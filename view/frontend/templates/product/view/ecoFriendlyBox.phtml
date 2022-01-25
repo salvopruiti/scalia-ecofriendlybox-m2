@@ -1,0 +1,41 @@
+<?php
+
+/** @var \ScaliaGroup\EcoFriendlyBox\Block\EcoFriendlyBox $block */
+
+
+$product = $block->getProduct();
+
+$ecoFriendly = $product->getAttributeText('eco_friendly');
+if($ecoFriendly && !is_array($ecoFriendly)) $ecoFriendly = [$ecoFriendly];
+if($ecoFriendly):
+    ?>
+
+    <style>
+
+        .sg_eco_friendly_box {
+            background: rgb(255,255,255);
+            background: linear-gradient(162deg, rgba(255,255,255,1) 0%, rgba(194,223,159,0.6558998599439776) 100%, rgba(139,195,74,1) 100%);
+        }
+
+        .sg_eco_friendly_box ul {
+            margin-bottom: 0;
+        }
+
+        .sg_eco_friendly_box ul li {
+            margin-bottom: 0.5rem;
+        }
+
+    </style>
+    <div class="sg_eco_friendly_box border p-4 border-rounded d-block mt-4 w-100">
+        <p>
+            <i class="fa fa-leaf mr-2" style="font-size: 32px; vertical-align: middle; width: 48px; text-align: center; color: #8BC34A"></i>
+            <strong><?= /* @noEscape */ __('Prodotto sostenibile')?></strong>
+        </p>
+
+        <ul>
+            <?php foreach($ecoFriendly as $value):?>
+                <li><?=$value;?></li>
+            <?php endforeach?>
+        </ul>
+    </div>
+<?php endif ?>
